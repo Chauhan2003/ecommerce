@@ -4,7 +4,7 @@ import { Box, Button, Typography } from '@mui/material'
 
 const PageNotFound = () => {
     return (
-        <Layout>
+        <Layout title={'Page Not Found'}>
             <div className='absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] select-none'>
                 <Box sx={{ borderRadius: '5px', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                     <Typography fontSize={80} fontWeight={600}>404</Typography>

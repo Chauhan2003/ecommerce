@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import dbConnect from './config/database.js';
 import morgan from 'morgan';
 import userRoutes from './routes/user.js';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ dotenv.config();
 const app = express();
 
 // middleware:
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 

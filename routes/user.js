@@ -4,6 +4,6 @@ const router = express.Router()
 import { requireSignIn, isAdmin } from '../middlewares/AuthMiddleware.js';
 
 router.route('/register').post(registerUser)
-router.route('/').post(loginUser)
+router.route('/login').post(loginUser)
 
 export default router;

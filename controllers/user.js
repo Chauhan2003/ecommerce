@@ -23,9 +23,8 @@ export const registerUser = async (req, res, next) => {
             address
         }).save();
 
-        res.status(201).send({
-            success: true,
-            message: 'User Register Successfully',
+        res.status(201).json({
+            message: 'Register Successfull',
             user: {
                 name: user.name,
                 email: user.email,
@@ -62,9 +61,8 @@ export const loginUser = async (req, res, next) => {
             expiresIn: "15d"
         })
 
-        res.status(201).send({
-            success: true,
-            message: 'User Login Successfully',
+        res.status(201).json({
+            message: 'Login Successfull',
             user: {
                 name: user.name,
                 email: user.email,

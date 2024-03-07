@@ -1,9 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button, IconButton } from '@mui/material';
 
 const Header = () => {
+    const navigate = useNavigate();
+    const handleLogin = () => {
+        navigate('/login')
+    }
     return (
         <>
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
@@ -14,7 +18,7 @@ const Header = () => {
                     <div class="flex items-center space-x-6 rtl:space-x-reverse">
                         <Link to='/contact' class="text-[15px]  text-gray-500 dark:text-white">(+91) 9056360204</Link>
                         {/* <Link to='/' class="text-sm py-1 px-4 rounded bg-white font-bold dark:text-black">Login</Link> */}
-                        <Button variant='contained'>Login</Button>
+                        <Button variant='contained' onClick={handleLogin}>Login</Button>
                     </div>
                 </div>
             </nav>
