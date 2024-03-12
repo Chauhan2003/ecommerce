@@ -2,11 +2,24 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Button, IconButton } from '@mui/material';
+import { useAuth } from '../context/auth';
+import { toast } from 'react-toastify';
 
 const Header = () => {
+    const [user, setUser] = useAuth();
     const navigate = useNavigate();
     const handleLogin = () => {
         navigate('/login')
+    }
+    const handleLogout = () => {
+        setUser({
+            ...user,
+            user: null,
+            token: ''
+        });
+        localStorage.removeItem('user');
+        navigate('/login');
+        toast.success('Logout successfully')
     }
     return (
         <>
@@ -17,8 +30,17 @@ const Header = () => {
                     </div>
                     <div class="flex items-center space-x-6 rtl:space-x-reverse">
                         <Link to='/contact' class="text-[15px]  text-gray-500 dark:text-white">(+91) 9056360204</Link>
-                        {/* <Link to='/' class="text-sm py-1 px-4 rounded bg-white font-bold dark:text-black">Login</Link> */}
-                        <Button variant='contained' onClick={handleLogin}>Login</Button>
+                        {
+                            !user.user ? (
+                                <>
+                                    <Button variant='contained' onClick={handleLogin}>Login</Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button variant='contained' onClick={handleLogout}>Logout</Button>
+                                </>
+                            )
+                        }
                     </div>
                 </div>
             </nav>

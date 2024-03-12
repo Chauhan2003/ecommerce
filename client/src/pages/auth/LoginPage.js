@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
 import Layout from '../../components/Layout';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -9,6 +9,9 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const naviagate = useNavigate()
+  const [user, setUser] = useAuth();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +23,13 @@ const Login = () => {
 
     try {
       const res = await axios.post(`http://localhost:8000/api/v1/user/login`, data);
-      console.log(res.data);
+      setUser({
+        ...user,
+        user: res.data.user,
+        token: res.data.token
+      })
+      localStorage.setItem('user', JSON.stringify(res.data));
+      naviagate(location.state || '/');
       toast.success(res.data.message)
     } catch (err) {
       toast.error(err.response.data.message);
@@ -90,12 +99,15 @@ const Login = () => {
               Login
             </Button>
           </Box>
-          <Typography>
-            Don't have an account?{' '}
-            <Link to="/register" className="underline text-blue-700">
-              Register
-            </Link>
-          </Typography>
+          <Box>
+            <Link to="/forgetpassword" className="underline text-blue-700">Forget Password</Link>
+            <Typography marginTop={1}>
+              Don't have an account?{' '}
+              <Link to="/register" className="underline text-blue-700">
+                Register
+              </Link>
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Layout>

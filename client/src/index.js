@@ -15,11 +15,12 @@ root.render(
       <ToastContainer
         position="top-right"
         autoClose={3000}
+        pauseOnFocusLoss={false}
         hideProgressBar={true}
         newestOnTop={true}
         closeOnClick
         rtl={false}
-        theme="light"
+        theme="dark"
       />
     </AuthProvider>
   </Router>

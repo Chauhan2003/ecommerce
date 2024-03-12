@@ -7,9 +7,7 @@ const HomePage = () => {
   return (
     <Layout title={'Best Offers'}>
       <h1>Home Page</h1>
-      <p>
-        {/* {user} */}
-      </p>
+      <pre>{JSON.stringify(user, null, 4)}</pre>
     </Layout>
   )
 }

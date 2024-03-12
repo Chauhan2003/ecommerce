@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.js'
 
-export const requireSignIn = async (req, res, next) => {
+export const isAuthenticated = async (req, res, next) => {
     try {
-        const decode = jwt.verify(req.header.authorization, process.env.JWT_KEY);
+        const decode = jwt.verify(req.headers.authorization, process.env.JWT_KEY);
         req.user = decode;
         next();
     } catch (err) {
