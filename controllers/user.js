@@ -62,7 +62,8 @@ export const loginUser = async (req, res, next) => {
                 name: user.name,
                 email: user.email,
                 address: user.address,
-                phone: user.phone
+                phone: user.phone,
+                role: user.role
             },
             token
         });
@@ -86,7 +87,7 @@ export const forgetPassword = async (req, res, next) => {
         }
         // generate a reset password token:
         const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY, {
-            expiresIn: '15m'
+            expiresIn: '10m'
         });
 
         await sendPasswordMail(user._id, token, email)

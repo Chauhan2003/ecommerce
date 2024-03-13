@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Avatar, Box, Button, IconButton, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -13,6 +13,8 @@ const RegisterPage = () => {
     const [cpassword, setCPassword] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
+
+    const navigate = useNavigate();
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -34,6 +36,8 @@ const RegisterPage = () => {
             const res = await axios.post(`http://localhost:8000/api/v1/user/register`, data);
             console.log(res.data);
             toast.success(res.data.message);
+            navigate('/login');
+
         } catch (err) {
             toast.error(err.response.data.message);
         }

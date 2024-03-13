@@ -1,13 +1,20 @@
 import express from 'express'
 import { forgetPassword, loginUser, registerUser, resetPassword } from '../controllers/user.js';
 const router = express.Router()
-import { isAuthenticated } from '../middlewares/AuthMiddleware.js';
+import { isAdmin, isAuthenticated } from '../middlewares/AuthMiddleware.js';
 
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser)
 
-// protected route:
+// protected user route:
 router.route('/isauthenticated').get(isAuthenticated, (req, res, next) => {
+    res.status(200).json({
+        success: true
+    })
+})
+
+// protected user route:
+router.route('/isadminuser').get(isAuthenticated, isAdmin, (req, res, next) => {
     res.status(200).json({
         success: true
     })

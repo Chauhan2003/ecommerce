@@ -11,6 +11,13 @@ import Dashboard from './pages/user/Dashboard'
 import Private from './components/routes/Private'
 import ForgetPassword from './pages/ForgetPassword'
 import ResetPassword from './pages/ResetPassword'
+import Admin from './components/routes/Admin'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import CreateCategory from './pages/admin/CreateCategory'
+import CreateProduct from './pages/admin/CreateProduct'
+import Users from './pages/admin/Users'
+import Profile from './pages/user/Profile'
+import Order from './pages/user/Order'
 
 const App = () => {
   return (
@@ -18,7 +25,15 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/dashboard' element={<Private />}>
-          <Route path='' element={<Dashboard />} />
+          <Route path='user' element={<Dashboard />} />
+          <Route path='user/profile' element={<Profile />} / >
+          <Route path='user/orders' element={<Order />} / >
+        </Route>
+        <Route path='/dashboard' element={<Admin />}>
+          <Route path='admin' element={<AdminDashboard />} />
+          <Route path='admin/createcategory' element={<CreateCategory />} />
+          <Route path='admin/createproduct' element={<CreateProduct />} />
+          <Route path='admin/users' element={<Users />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />

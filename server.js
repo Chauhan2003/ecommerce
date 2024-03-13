@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import dbConnect from './config/database.js';
 import morgan from 'morgan';
 import userRoutes from './routes/user.js';
+import categoryRoutes from './routes/category.js';
 import cors from 'cors';
 
 dotenv.config();
@@ -21,6 +22,7 @@ dbConnect();
 
 // routes:
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/category', categoryRoutes);
 
 // rest api:
 app.get('/', (req, res) => {
