@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const UserMenu = () => {
     const navigate = useNavigate();
 
-    const handleCreateProduct = () => {
+    const handleCreateProfile = () => {
         navigate(`/dashboard/user/profile`);
     }
 
-    const handleCreateCategory = () => {
+    const handleCreateOrders = () => {
         navigate(`/dashboard/user/orders`);
     }
     return (
@@ -17,12 +17,12 @@ const UserMenu = () => {
             <Typography fontSize={20} fontWeight={600} p={'10px 15px'} className='dark:bg-gray-900'>User Panel</Typography>
             <List className='dark:bg-gray-700'>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={handleCreateCategory}>
+                    <ListItemButton onClick={handleCreateProfile}>
                         <ListItemText primary="Profile" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                    <ListItemButton onClick={handleCreateProduct}>
+                    <ListItemButton onClick={handleCreateOrders}>
                         <ListItemText primary="Orders" />
                     </ListItemButton>
                 </ListItem>
